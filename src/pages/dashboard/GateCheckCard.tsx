@@ -7,7 +7,7 @@ const barStyles: Record<(typeof gateCheckRows)[number]['tone'], string> = {
 };
 
 function GateCheckCard() {
-  const max = Math.max(...gateCheckRows.map((row) => row.value));
+  const total = gateCheckRows.reduce((sum, row) => sum + row.value, 0);
 
   return (
     <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
@@ -28,7 +28,7 @@ function GateCheckCard() {
             <div className="h-2 flex-1 rounded-full bg-gray-100">
               <div
                 className={`h-2 rounded-full ${barStyles[row.tone]}`}
-                style={{ width: `${(row.value / max) * 100}%` }}
+                style={{ width: `${(row.value / total) * 100}%` }}
               />
             </div>
             <span className="w-6 text-right text-sm font-semibold text-gray-900">{row.value}</span>

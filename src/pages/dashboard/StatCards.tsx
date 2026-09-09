@@ -1,5 +1,7 @@
 import type { ReactNode } from 'react';
 
+const complianceTrend = [52, 61, 48, 70, 66, 80, 94];
+
 interface StatCardProps {
   accent: string;
   label: string;
@@ -30,11 +32,12 @@ function StatCards() {
         <p className="text-3xl font-bold text-gray-900">
           94<span className="text-lg align-top">%</span>
         </p>
-        <div className="mt-3 flex gap-1">
-          {[0, 1, 2, 3, 4, 5].map((i) => (
+        <div className="mt-3 flex h-9 items-end gap-1">
+          {complianceTrend.map((value, i) => (
             <span
               key={i}
-              className={`h-1.5 flex-1 rounded-full ${i === 5 ? 'bg-gray-800' : 'bg-gray-200'}`}
+              style={{ height: `${value}%` }}
+              className={`w-full rounded-sm ${i === complianceTrend.length - 1 ? 'bg-gray-800' : 'bg-gray-200'}`}
             />
           ))}
         </div>
